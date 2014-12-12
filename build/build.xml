@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+@version      build/build.xml 2014-10-05 12:59:00 UTC zanardi
+@author       GiBiLogic <info@gibilogic.com>
+@authorUrl    http://www.gibilogic.com
+@copyright    (C) 2014 GiBiLogic snc. All rights reserved.
+@license      GNU/GPL v3 or later
+@description  Ant build file for "GiBiLogic Firewall for RSfiles"
+ -->
+
+<project name="firewall-rsfiles" default="Build ZIP package" basedir=".">
+	<description>GiBiLogic Firewall for RSfiles</description>
+	<property file="build.properties" />
+
+	<property name="dir.plugin" location="../src/plugin" />
+	<property name="dir.release" location="../release" />
+
+	<target name="Build ZIP package" depends="Clean releases">
+		<echo message="Building the ZIP packages..." />
+		<zip destfile="${dir.release}/${plugin.name}_${current.version}.zip" basedir="${dir.plugin}" whenempty="fail" />
+	</target>
+
+	<target name="Deploy (Local)">
+		<echo message="Deploying locally..." />
+		<!-- Component -->
+		<copy todir="${path.deploy.local}/plugins/rsfiles/${project.name}" overwrite="true">
+			<fileset dir="${dir.plugin}"></fileset>
+		</copy>
+	</target>
+
+	<target name="Clean releases">
+		<echo message="Cleaning the project..." />
+		<delete includeemptydirs="true">
+			<fileset dir="${dir.release}/">
+				<include name="*.zip" />
+			</fileset>
+		</delete>
+	</target>
+
+</project>
