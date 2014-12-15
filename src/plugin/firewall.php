@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version       firewall.php 2014-09-16 09:53:00 UTC zanardi
+ * @version       firewall.php 2014-12-15 17:35:00 UTC zanardi
  * @package       GiBi Firewall for RsFiles
  * @author        GiBiLogic <info@gibilogic.com>
  * @authorUrl     http://www.gibilogic.com

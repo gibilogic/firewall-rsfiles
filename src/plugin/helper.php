@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version       helper.php 2014-12-12 16:06:00 UTC zanardi
+ * @version       helper.php 2014-12-15 17:35:00 UTC zanardi
  * @package       GiBi Firewall for RsFiles
  * @author        GiBiLogic <info@gibilogic.com>
  * @authorUrl     http://www.gibilogic.com
@@ -14,9 +14,9 @@ class plgRsfilesFirewallHelper
 {
     /**
      *
-     * @var array $blocked_ips
+     * @var array $ip_list
      */
-    private $blocked_ips = array();
+    private $ip_list = array();
 
     /**
      *
@@ -40,23 +40,27 @@ class plgRsfilesFirewallHelper
      */
     public function isAllowedIp()
     {
-        if (in_array($_SERVER['REMOTE_ADDR'], $this->getBlockedIps()))
-        {
-            return false;
-        }
+        $is_current_ip_listed = in_array($_SERVER['REMOTE_ADDR'], $this->getIpList());
 
-        return true;
+        if ($this->params->get('ip_list_type', 'E') == 'E')
+        {
+            return $is_current_ip_listed;
+        }
+        else
+        {
+            return !$is_current_ip_listed;
+        }
     }
 
     /**
-     * Check if the current client IP is allowed to perform the download
+     * Get the IP list from configuration
      *
      * @return array
      */
-    public function getBlockedIps()
+    public function getIpList()
     {
-        $blocked_ips = $this->params->get("blocked_ips", '');
+        $ip_list = $this->params->get("ip_list", '');
 
-        return preg_split('/\s+/', $blocked_ips);
+        return preg_split('/\s+/', $ip_list);
     }
 }

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension version="3.0" type="plugin" group="rsfiles" method="upgrade">
     <name>PLG_RSFILES_FIREWALL</name>
-    <creationDate>2014-12-12</creationDate>
+    <creationDate>2014-12-15</creationDate>
     <author>GiBiLogic</author>
     <authorUrl>https://extensions.gibilogic.com</authorUrl>
     <copyright>Copyright (C) 2014 GiBiLogic. All rights reserved.</copyright>
     <license>GNU/GPL v3 or later</license>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <description>PLG_RSFILES_FIREWALL</description>
     <files>
         <filename plugin="firewall">firewall.php</filename>
+        <filename>helper.php</filename>
     </files>
     <languages folder="language">
         <language tag="en-GB">en-GB/en-GB.rsfiles_firewall.sys.ini</language>
@@ -17,7 +18,11 @@
     <config>
         <fields name="params">
             <fieldset name="basic">
-                <field type="textarea" name="blocked_ips" label="PLG_RSFILES_FIREWALL_CONFIG_BLOCKED_IPS" description="PLG_RSFILES_FIREWALL_CONFIG_BLOCKED_IPS_DESC" />
+                <field type="radio" default="E" name="ip_list_type" label="PLG_RSFILES_FIREWALL_CONFIG_IP_LIST_TYPE" description="PLG_RSFILES_FIREWALL_CONFIG_IP_LIST_TYPE_DESC">
+                    <option value="E">PLG_RSFILES_FIREWALL_CONFIG_IP_LIST_TYPE_OPTION_E</option>
+                    <option value="B">PLG_RSFILES_FIREWALL_CONFIG_IP_LIST_TYPE_OPTION_B</option>
+                </field>
+                <field type="textarea" name="ip_list" label="PLG_RSFILES_FIREWALL_CONFIG_IP_LIST" description="PLG_RSFILES_FIREWALL_CONFIG_IP_LIST_DESC" />
             </fieldset>
         </fields>
     </config>
