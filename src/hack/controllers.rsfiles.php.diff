@@ -1,0 +1,12 @@
+212a213,223
+>     
+>     // Hack by Zanardi - START
+>     JPluginHelper::importPlugin('rsfiles');
+>     $result = array_filter(JDispatcher::getInstance()->trigger('onRsfilesBeforeDownload'));
+>     if (empty($result))
+>     {
+>         JFactory::getApplication()->enqueueMessage(JText::_('COM_RSFILES_PERMISSION_DENIED'), 'error');
+>         $this->setRedirect($_SERVER['HTTP_REFERER'])->redirect();
+>     }
+>     // Hack by Zanardi - END
+>     
