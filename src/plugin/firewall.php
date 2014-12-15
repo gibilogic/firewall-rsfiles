@@ -55,6 +55,11 @@ class plgRsfilesFirewall extends JPlugin
      */
     public function onRsfilesBeforeDownload()
     {
+        if ( ! $this->helper->isProtectedFolder())
+        {
+            return true;
+        }
+
         return $this->helper->isAllowedIp();
     }
 
