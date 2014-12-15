@@ -40,8 +40,7 @@ class plgRsfilesFirewallHelper
      */
     public function isAllowedIp()
     {
-        $is_current_ip_listed = in_array($_SERVER['REMOTE_ADDR'], $this->getIpList());
-
+        $is_current_ip_listed = $this->isListed($_SERVER['REMOTE_ADDR'], $this->getIpList());
         if ($this->params->get('ip_list_type', 'E') == 'E')
         {
             return $is_current_ip_listed;
@@ -57,10 +56,31 @@ class plgRsfilesFirewallHelper
      *
      * @return array
      */
-    public function getIpList()
+    private function getIpList()
     {
         $ip_list = $this->params->get("ip_list", '');
 
         return preg_split('/\s+/', $ip_list);
+    }
+
+    /**
+     * See if the current IP matches our IP patterns list.
+     *
+     * @param   string  $ip
+     * @param   array   $ip_list
+     * @return  boolean
+     */
+    private function isListed($ip, $ip_list)
+    {
+        foreach ($ip_list as $ip_pattern)
+        {
+            $pattern = '/^'. $ip_pattern . '/';
+            if (preg_match($pattern, $ip))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

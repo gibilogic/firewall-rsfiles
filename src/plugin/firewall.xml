@@ -6,7 +6,7 @@
     <authorUrl>https://extensions.gibilogic.com</authorUrl>
     <copyright>Copyright (C) 2014 GiBiLogic. All rights reserved.</copyright>
     <license>GNU/GPL v3 or later</license>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <description>PLG_RSFILES_FIREWALL</description>
     <files>
         <filename plugin="firewall">firewall.php</filename>
@@ -22,7 +22,7 @@
                     <option value="E">PLG_RSFILES_FIREWALL_CONFIG_IP_LIST_TYPE_OPTION_E</option>
                     <option value="B">PLG_RSFILES_FIREWALL_CONFIG_IP_LIST_TYPE_OPTION_B</option>
                 </field>
-                <field type="textarea" name="ip_list" label="PLG_RSFILES_FIREWALL_CONFIG_IP_LIST" description="PLG_RSFILES_FIREWALL_CONFIG_IP_LIST_DESC" />
+                <field type="textarea" name="ip_list" rows="10" label="PLG_RSFILES_FIREWALL_CONFIG_IP_LIST" description="PLG_RSFILES_FIREWALL_CONFIG_IP_LIST_DESC" />
             </fieldset>
         </fields>
     </config>
